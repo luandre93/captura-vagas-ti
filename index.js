@@ -1,8 +1,10 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 const url = "https://fiesc.pandape.infojobs.com.br/?PageNumber=1&PageSize=999";
-let vagas = []
 
+let vagas = new Array();
+let filtroLocalizacao = ['Florianópolis', 'São José', 'Palhoça', 'Biguaçu'];
+let filtroTitulo = ['TI', 'Programador', 'Desenvolvedor', 'JavaScript', 'Infraestrutura', 'Suporte']
 
 fetchData(url).then((res) => {
     const html = res.data;
@@ -13,9 +15,24 @@ fetchData(url).then((res) => {
         let detailLocation = $(this).find('div > .vacancy-detail > .vacancy-location:first').text();
         let detailVagas = $(this).find('div > .vacancy-detail > .mb-2').text().trim();
         let dataVagas = $(this).find('div > .vacancy-date').text().trim();
-        vagas.push({ 'titulo': title, 'data': dataVagas, 'localizacao': detailLocation, 'descrição': detailVagas })
+        vagas.push({
+            'titulo': title,
+            'data': dataVagas,
+            'localizacao': detailLocation,
+            'descrição': detailVagas
+        })
     });
-}).then(() => console.table(vagas.filter(t => t.localizacao.includes('Florianópolis') && t.titulo.includes('TI'))))
+})
+    .then(() =>
+        console.table(
+            vagas.filter(
+                vaga =>
+                    filtroLocalizacao.find(item => vaga.localizacao.includes(item)) &&
+                    filtroTitulo.find(item => vaga.titulo.includes(item))
+            )
+        )
+    )
+
 
 async function fetchData(url) {
     console.log("Crawling data...")
