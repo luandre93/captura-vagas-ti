@@ -32,11 +32,3 @@ async function resultado() {
 }
 
 resultado();
-/* console.table(
-    retornoData.filter(
-        vaga =>
-            filtroLocalizacao.find(item => vaga.localizacao.includes(item)) &&
-            filtroTitulo.find(item => vaga.titulo.includes(item))
-    )
-) */
-
