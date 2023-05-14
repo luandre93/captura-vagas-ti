@@ -1,12 +1,11 @@
 const { Crawling } = require('./crawling');
 
 const url = "https://fiesc.pandape.infojobs.com.br/?PageNumber=1&PageSize=999";
+const filtroLocalizacao = ['Florianópolis', 'São José', 'Palhoça', 'Biguaçu'];
+const filtroTitulo = ['TI', 'Programador', 'Desenvolvedor', 'JavaScript', 'Infraestrutura', 'Suporte']
+const result = new Crawling(url)
 
-let filtroLocalizacao = ['Florianópolis', 'São José', 'Palhoça', 'Biguaçu'];
-let filtroTitulo = ['TI', 'Programador', 'Desenvolvedor', 'JavaScript', 'Infraestrutura', 'Suporte']
-let result = new Crawling(url)
-
-async function resultado() {
+async function layoutFiesc() {
     let vagas = [];
     let data = await result.fetchData(($) => {
         $('#VacancyList > a').each(function () {
@@ -31,4 +30,4 @@ async function resultado() {
     return data;
 }
 
-resultado();
+layoutFiesc();
