@@ -1,7 +1,7 @@
 const { Crawling } = require('./crawling');
 const filtroLocalizacao = ['Florianópolis', 'São José', 'Palhoça', 'Biguaçu'];
 const filtroTitulo = ['TI', 'Programador', 'Desenvolvedor', 'JavaScript', 'Infraestrutura', 'Suporte']
-let enableFiltroLocalizacao = true
+
 async function pandapeLayout(url) {
     const pathConstruct = (pathName) => (url.split('/')[0] + '//' + url.split('/')[2] + pathName);
     const result = new Crawling(url)
