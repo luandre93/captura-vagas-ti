@@ -8,7 +8,7 @@ const pathConstruct = (pathName) => url.split('/')[0] + '//' + url.split('/')[2]
 
 async function layoutFiesc() {
     let vagas = [];
-    let data = await result.fetchData(($) => {
+    await result.fetchData(($) => {
         $('#VacancyList > a').each(function () {
             let title = $(this).find('div > .vacancy-title').text().trim();
             let detailLocation = $(this).find('div > .vacancy-detail > .vacancy-location:first').text();
