@@ -6,7 +6,6 @@ const filtroTitulo = ['TI', 'Programador', 'Desenvolvedor', 'JavaScript', 'Infra
 const result = new Crawling(url)
 const pathConstruct = (pathName) => url.split('/')[0] + '//' + url.split('/')[2] + pathName
 
-
 async function layoutFiesc() {
     let vagas = [];
     let data = await result.fetchData(($) => {
@@ -31,7 +30,7 @@ async function layoutFiesc() {
             filtroTitulo.find(item => vaga.titulo.includes(item))
     )
     console.table(dadosFiltrados)
-    return data;
+    return dadosFiltrados;
 }
 
 layoutFiesc();
