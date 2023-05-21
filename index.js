@@ -1,12 +1,10 @@
 const { Crawling } = require('./crawling');
-
-const url = "https://fiesc.pandape.infojobs.com.br/?PageNumber=1&PageSize=999";
 const filtroLocalizacao = ['Florianópolis', 'São José', 'Palhoça', 'Biguaçu'];
 const filtroTitulo = ['TI', 'Programador', 'Desenvolvedor', 'JavaScript', 'Infraestrutura', 'Suporte']
-const result = new Crawling(url)
-const pathConstruct = (pathName) => url.split('/')[0] + '//' + url.split('/')[2] + pathName
-
-async function layoutFiesc() {
+let enableFiltroLocalizacao = true
+async function pandapeLayout(url) {
+    const pathConstruct = (pathName) => (url.split('/')[0] + '//' + url.split('/')[2] + pathName);
+    const result = new Crawling(url)
     let vagas = [];
     await result.fetchData(($) => {
         $('#VacancyList > a').each(function () {
@@ -33,4 +31,5 @@ async function layoutFiesc() {
     return dadosFiltrados;
 }
 
-layoutFiesc();
+pandapeLayout("https://fiesc.pandape.infojobs.com.br/?PageNumber=1&PageSize=999");
+pandapeLayout("https://sodexoonsite.pandape.infojobs.com.br/?PageNumber=1&PageSize=999");
