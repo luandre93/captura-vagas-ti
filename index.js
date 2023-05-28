@@ -32,4 +32,3 @@ async function pandapeLayout(url) {
 }
 
 pandapeLayout("https://fiesc.pandape.infojobs.com.br/?PageNumber=1&PageSize=999");
-pandapeLayout("https://sodexoonsite.pandape.infojobs.com.br/?PageNumber=1&PageSize=999");
